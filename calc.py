@@ -3,6 +3,8 @@ from kivy.uix.widget import Widget
 from kivy.lang import Builder
 from kivy.core.window import Window
 
+import math
+
 Window.size = (500,700)
 
 
@@ -32,6 +34,7 @@ class MyLayout(Widget):
             self.operation_ended = False
         else:
             self.ids.calc_input.text = f'{prior}{button}'
+            self.operation_ended = False
 
     # Create function to remove last character in textbox
     def remove(self):
@@ -78,6 +81,12 @@ class MyLayout(Widget):
         self.ids.calc_input.text = str(power)
         self.operation_ended = True
 
+    def square_root(self):
+        prior = self.ids.calc_input.text
+        square = round(math.sqrt(float(prior)), 6)
+        self.ids.calc_input.text = str(square)
+        self.operation_ended = True
+
     # create addition function
     def math_sign(self, sign):
         # create a variable that contains whatever was in the textbox already
@@ -95,7 +104,7 @@ class MyLayout(Widget):
             # Evaluate the math from the textbox
             answer = eval(prior)
             # Output the answer
-            self.ids.calc_input.text = str(round(answer, 11))
+            self.ids.calc_input.text = str(round(answer, 6))
             # Change operation state
             self.operation_ended = True
         except:
