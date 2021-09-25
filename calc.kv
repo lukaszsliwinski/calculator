@@ -23,14 +23,15 @@
             Button:
                 size_hint: (.2, .2)
                 font_size: 32
-                text: "CE"
+                text: "C"
+                on_press: root.clear()
 
             Button:
                 id: clear
                 size_hint: (.2, .2)
                 font_size: 32
-                text: "C"
-                on_press: root.clear()
+                text: u"\u00AB"
+                on_press: root.remove()
                 
             Button:
                 size_hint: (.2, .2)

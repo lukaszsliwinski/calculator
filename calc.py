@@ -15,7 +15,7 @@ class MyLayout(Widget):
 
     # Create a button pressing function
     def button_press(self, button):
-        # create a variable that contains whatever was in the text box already
+        # create a variable that contains whatever was in the textbox already
         prior = self.ids.calc_input.text
 
         # determine if 0 is sitting there
@@ -25,6 +25,15 @@ class MyLayout(Widget):
         else:
             self.ids.calc_input.text = f'{prior}{button}'
 
+    # Create function to remove last character in textbox
+    def remove(self):
+        prior = self.ids.calc_input.text
+        # Remove the last item in the textbox
+        prior = prior[:-1]
+        # Output back to the textbox
+        self.ids.calc_input.text = prior
+
+    # Create decimal function
     def dot(self):
         prior = self.ids.calc_input.text
 
@@ -33,14 +42,14 @@ class MyLayout(Widget):
         else:
             # Add a decimal to the end of the text
             prior = f'{prior}.'
-            # Output back to the text box
+            # Output back to the textbox
             self.ids.calc_input.text = prior
             
     # create addition function
     def math_sign(self, sign):
-        # create a variable that contains whatever was in the text box already
+        # create a variable that contains whatever was in the textbox already
         prior = self.ids.calc_input.text
-        # slap a plus sign to the text box
+        # slap a plus sign to the textbox
         self.ids.calc_input.text = f'{prior}{sign}'
 
     # create equals to function
@@ -55,7 +64,7 @@ class MyLayout(Widget):
             for number in num_list:
                 answer = answer + int(number)
 
-            # print the answer in the text box
+            # print the answer in the textbox
             self.ids.calc_input.text = str(answer)
 
     
