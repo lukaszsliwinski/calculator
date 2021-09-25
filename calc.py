@@ -26,32 +26,11 @@ class MyLayout(Widget):
             self.ids.calc_input.text = f'{prior}{button}'
             
     # create addition function
-    def add(self):
+    def math_sign(self, sign):
         # create a variable that contains whatever was in the text box already
         prior = self.ids.calc_input.text
         # slap a plus sign to the text box
-        self.ids.calc_input.text = f'{prior}+'
-
-    # create subtraction function
-    def subtract(self):
-        # create a variable that contains whatever was in the text box already
-        prior = self.ids.calc_input.text
-        # slap a plus sign to the text box
-        self.ids.calc_input.text = f'{prior}-'
-
-    # create multiplication function
-    def multiply(self):
-        # create a variable that contains whatever was in the text box already
-        prior = self.ids.calc_input.text
-        # slap a plus sign to the text box
-        self.ids.calc_input.text = f'{prior}*'
-
-    # create division function
-    def divide(self):
-        # create a variable that contains whatever was in the text box already
-        prior = self.ids.calc_input.text
-        # slap a plus sign to the text box
-        self.ids.calc_input.text = f'{prior}/'
+        self.ids.calc_input.text = f'{prior}{sign}'
 
     # create equals to function
     def equals(self):
