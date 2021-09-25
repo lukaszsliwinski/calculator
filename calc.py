@@ -1,6 +1,5 @@
 from kivy.app import App
 from kivy.uix.widget import Widget
-from kivy.properties import ObjectProperty
 from kivy.lang import Builder
 from kivy.core.window import Window
 
@@ -79,8 +78,6 @@ class MyLayout(Widget):
         self.ids.calc_input.text = str(power)
         self.operation_ended = True
 
-
-            
     # create addition function
     def math_sign(self, sign):
         # create a variable that contains whatever was in the textbox already
