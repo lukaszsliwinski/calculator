@@ -72,6 +72,14 @@ class MyLayout(Widget):
             prior = f'{prior}.'
             # Output back to the textbox
             self.ids.calc_input.text = prior
+
+    def power(self):
+        prior = self.ids.calc_input.text
+        power = float(prior)**2
+        self.ids.calc_input.text = str(power)
+        self.operation_ended = True
+
+
             
     # create addition function
     def math_sign(self, sign):
