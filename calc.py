@@ -33,6 +33,15 @@ class MyLayout(Widget):
         # Output back to the textbox
         self.ids.calc_input.text = prior
 
+    # Create function to make textbox positive or negative
+    def pos_neg(self):
+        prior = self.ids.calc_input.text
+        # Test to see if there's a - sign already
+        if "-" in prior:
+            self.ids.calc_input.text = f'{prior.replace("-", "")}'
+        else:
+            self.ids.calc_input.text = f'-{prior}'
+
     # Create decimal function
     def dot(self):
         prior = self.ids.calc_input.text
