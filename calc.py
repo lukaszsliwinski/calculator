@@ -10,6 +10,9 @@ Window.size = (500,700)
 Builder.load_file('calc.kv')
 
 class MyLayout(Widget):
+    # Operation state
+    operation_ended = True
+
     def clear(self):
         self.ids.calc_input.text = "0"
 
@@ -19,13 +22,15 @@ class MyLayout(Widget):
         prior = self.ids.calc_input.text
 
         # Test for error first
-        if "Error" in prior:
+        if "Error" in prior or self.operation_ended == True:
             prior = ''
 
         # determine if 0 is sitting there
         if prior == "0":
             self.ids.calc_input.text = ''
             self.ids.calc_input.text = f'{button}'
+            # Change operation state
+            self.operation_ended = False
         else:
             self.ids.calc_input.text = f'{prior}{button}'
 
@@ -74,6 +79,8 @@ class MyLayout(Widget):
         prior = self.ids.calc_input.text
         # slap a plus sign to the textbox
         self.ids.calc_input.text = f'{prior}{sign}'
+        # Change operation state
+        self.operation_ended = False
 
     # create equals to function
     def equals(self):
@@ -84,6 +91,8 @@ class MyLayout(Widget):
             answer = eval(prior)
             # Output the answer
             self.ids.calc_input.text = str(round(answer, 11))
+            # Change operation state
+            self.operation_ended = True
         except:
             self.ids.calc_input.text = "Error"
 
