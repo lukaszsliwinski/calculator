@@ -18,6 +18,10 @@ class MyLayout(Widget):
         # create a variable that contains whatever was in the textbox already
         prior = self.ids.calc_input.text
 
+        # Test for error first
+        if "Error" in prior:
+            prior = ''
+
         # determine if 0 is sitting there
         if prior == "0":
             self.ids.calc_input.text = ''
@@ -35,10 +39,13 @@ class MyLayout(Widget):
 
     # Create function to make textbox positive or negative
     def pos_neg(self):
+        prior = ''
         prior = self.ids.calc_input.text
-        # Test to see if there's a - sign already
-        if "-" in prior:
-            self.ids.calc_input.text = f'{prior.replace("-", "")}'
+
+        # Test to see if there's a - sign already at the beginning
+        if prior[0] == "-":
+            prior = prior[1:]
+            self.ids.calc_input.text = f'{prior}'
         else:
             self.ids.calc_input.text = f'-{prior}'
 
@@ -48,7 +55,7 @@ class MyLayout(Widget):
         # Split our textbox by +
         num_list = prior.split("+")
 
-        if "+" in prior and "." not in num_list[-1]:
+        if "+" or "-" or "*" or "/" in prior and "." not in num_list[-1]:
             # Add a decimal to the end of the text
             prior = f'{prior}.'
             # Output back to the textbox
@@ -71,19 +78,14 @@ class MyLayout(Widget):
     # create equals to function
     def equals(self):
         prior = self.ids.calc_input.text
-
-        # Addition
-        if "+" in prior:
-            num_list = prior.split("+")
-            answer = 0
-            # loop thre our list
-            for number in num_list:
-                answer = answer + float(number)
-
-            # print the answer in the textbox
-            self.ids.calc_input.text = str(answer)
-
-    
+        # Error handling
+        try:
+            # Evaluate the math from the textbox
+            answer = eval(prior)
+            # Output the answer
+            self.ids.calc_input.text = str(round(answer, 11))
+        except:
+            self.ids.calc_input.text = "Error"
 
 class CalculatorApp(App):
     def build(self):
