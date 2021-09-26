@@ -21,9 +21,8 @@ class MyLayout(Widget):
     def button_press(self, button):
         # create a variable that contains whatever was in the textbox already
         prior = self.ids.calc_input.text
-
-        # Test for error first
-        if "Error" in prior or self.operation_ended == True:
+        # Check if operation is ended
+        if self.operation_ended == True:
             prior = ''
 
         # determine if 0 is sitting there
@@ -75,22 +74,15 @@ class MyLayout(Widget):
             # Output back to the textbox
             self.ids.calc_input.text = prior
 
-    def power(self):
-        prior = self.ids.calc_input.text
-        power = float(prior)**2
-        self.ids.calc_input.text = str(power)
-        self.operation_ended = True
 
-    def square_root(self):
-        prior = self.ids.calc_input.text
-        square = round(math.sqrt(float(prior)), 6)
-        self.ids.calc_input.text = str(square)
-        self.operation_ended = True
 
     # create addition function
     def math_sign(self, sign):
         # create a variable that contains whatever was in the textbox already
         prior = self.ids.calc_input.text
+
+        # self.check_state()
+        
         # slap a plus sign to the textbox
         self.ids.calc_input.text = f'{prior}{sign}'
         # Change operation state
@@ -108,7 +100,33 @@ class MyLayout(Widget):
             # Change operation state
             self.operation_ended = True
         except:
-            self.ids.calc_input.text = "Error"
+            self.display_error()
+
+
+    def power(self):
+        prior = self.ids.calc_input.text
+        try:
+            power = float(prior)**2
+            self.ids.calc_input.text = str(power)
+            self.operation_ended = True
+        except:
+            self.display_error()
+
+    def square_root(self):
+        prior = self.ids.calc_input.text
+        try:
+            square = round(math.sqrt(float(prior)), 6)
+            self.ids.calc_input.text = str(square)
+            self.operation_ended = True
+        except:
+            self.display_error()
+    
+    def display_error(self):
+        self.ids.calc_input.text = "ERR"
+        self.operation_ended = True
+
+
+
 
 class CalculatorApp(App):
     def build(self):
