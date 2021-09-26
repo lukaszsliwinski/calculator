@@ -120,12 +120,19 @@ class MyLayout(Widget):
             self.operation_ended = True
         except:
             self.display_error()
+
+    def reciprocal(self):
+        prior = self.ids.calc_input.text
+        try:
+            rec = round(1/float(prior), 6)
+            self.ids.calc_input.text = str(rec)
+            self.operation_ended = True
+        except:
+            self.display_error()
     
     def display_error(self):
         self.ids.calc_input.text = "ERR"
         self.operation_ended = True
-
-
 
 
 class CalculatorApp(App):
