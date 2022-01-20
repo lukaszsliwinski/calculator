@@ -3,7 +3,7 @@ from kivy.uix.widget import Widget
 from kivy.lang import Builder
 from kivy.core.window import Window
 
-import math
+import math, re
 
 Window.size = (500,700)
 
@@ -13,6 +13,7 @@ Builder.load_file('calc.kv')
 class MyLayout(Widget):
     # Operation state
     operation_ended = True
+    dot_included = False
 
     def clear(self):
         self.ids.calc_input.text = "0"
@@ -58,21 +59,55 @@ class MyLayout(Widget):
     # Create decimal function
     def dot(self):
         prior = self.ids.calc_input.text
-        # Split our textbox by +
-        num_list = prior.split("+")
+        last_sign = prior[-1]
 
-        if "+" or "-" or "*" or "/" in prior and "." not in num_list[-1]:
-            # Add a decimal to the end of the text
-            prior = f'{prior}.'
-            # Output back to the textbox
-            self.ids.calc_input.text = prior
-        elif "." in prior:
+        try:
+            last_sign = int(last_sign)
+        except ValueError:
             pass
+
+        
+        if "." not in prior and type(last_sign) is int:
+            prior += "."
         else:
-            # Add a decimal to the end of the text
-            prior = f'{prior}.'
-            # Output back to the textbox
-            self.ids.calc_input.text = prior
+            pass
+        # else:
+        #     # Split textbox by +, -, * or /
+        #     num_list = re.split('+, -, *, /', prior)
+        #     if "." not in num_list[-1]:
+        #     # Add a decimal to the end of the text
+        #         prior += "."
+        
+
+
+
+        # Output back to the textbox
+        self.ids.calc_input.text = prior
+            
+
+
+
+
+        # Split our textbox by +
+        # num_list = prior.split("+")
+
+        # Poprawić błąd z dodawaniem "."
+
+
+        # if "+" or "-" or "*" or "/" in prior and "." not in num_list[-1]:
+        #     # Add a decimal to the end of the text
+        #     prior = f'{prior}.'
+        #     # Output back to the textbox
+        #     self.ids.calc_input.text = prior
+        
+        
+        # elif "." in prior:
+        #     pass
+        # else:
+        #     # Add a decimal to the end of the text
+        #     prior = f'{prior}.'
+        #     # Output back to the textbox
+        #     self.ids.calc_input.text = prior
 
 
 
