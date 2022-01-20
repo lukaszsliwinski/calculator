@@ -39,10 +39,14 @@ class MyLayout(Widget):
     # Create function to remove last character in textbox
     def remove(self):
         prior = self.ids.calc_input.text
-        # Remove the last item in the textbox
-        prior = prior[:-1]
-        # Output back to the textbox
-        self.ids.calc_input.text = prior
+        # If there is only one item in the textbox, call clear() function to display '0'
+        if len(prior) == 1:
+            self.clear()
+        else:
+            # Remove the last item in the textbox
+            prior = prior[:-1]
+            # Output back to the textbox
+            self.ids.calc_input.text = prior
 
     # Create function to make textbox positive or negative
     def pos_neg(self):
