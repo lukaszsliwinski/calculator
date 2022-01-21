@@ -166,7 +166,28 @@ class MyLayout(Widget):
             prior = prior[1:]
 
         self.ids.calc_input.text = prior
+
+    def factorial(self):
+        prior = self.ids.calc_input.text
+        try:
+            prior = int(prior)
+        except ValueError:
+            try:
+                prior = float(prior)
+            except ValueError:
+                self.display_error()
         
+        fact = 1
+        if (type(prior) == int or (type(prior) == float and prior.is_integer())) and prior < 16:
+            for i in range(1, int(prior + 1)):
+                fact *= i
+
+            self.ids.calc_input.text = str(fact)
+            self.operation_ended = True
+
+        else:
+            self.display_error()
+
     
     def display_error(self):
         self.ids.calc_input.text = "ERR"
