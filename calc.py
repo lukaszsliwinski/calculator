@@ -12,7 +12,7 @@ Builder.load_file('calc.kv')
 
 class MyLayout(Widget):
     # Operation state
-    operation_ended = True
+    operation_ended = False
     dot_included = False
 
     def clear(self):
