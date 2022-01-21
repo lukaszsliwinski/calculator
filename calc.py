@@ -157,6 +157,16 @@ class MyLayout(Widget):
             self.operation_ended = True
         except:
             self.display_error()
+
+    def absolute(self):
+        self.equals()
+        prior = self.ids.calc_input.text
+
+        if prior[0] == '-':
+            prior = prior[1:]
+
+        self.ids.calc_input.text = prior
+        
     
     def display_error(self):
         self.ids.calc_input.text = "ERR"
