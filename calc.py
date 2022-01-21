@@ -103,8 +103,10 @@ class MyLayout(Widget):
         # create a variable that contains whatever was in the textbox already
         prior = self.ids.calc_input.text
 
-        # self.check_state()
-        
+        # if dot is in the end, delete it
+        if prior[-1] == '.':
+            prior = prior[:-1]
+
         # slap a plus sign to the textbox
         self.ids.calc_input.text = f'{prior}{sign}'
         # Change operation state
