@@ -3,7 +3,7 @@ from kivy.uix.widget import Widget
 from kivy.lang import Builder
 from kivy.core.window import Window
 
-import math, re
+import math
 
 Window.size = (500,700)
 
@@ -63,57 +63,40 @@ class MyLayout(Widget):
     # Create decimal function
     def dot(self):
         prior = self.ids.calc_input.text
+
         last_sign = prior[-1]
 
         try:
             last_sign = int(last_sign)
         except ValueError:
             pass
-
         
-        if "." not in prior and type(last_sign) is int:
+        last_num = ''
+        for sign in prior[::-1]:
+            try:
+                sign = int(sign)
+            except ValueError:
+                pass
+    
+            if type(sign) == int or sign == '.':
+                last_num += str(sign)
+            else:
+                break
+
+        try:
+            if '.' in last_num: 
+                last_num = float(last_num[::-1])
+            else:
+                last_num = int(last_num[::-1])
+        except ValueError:
+            pass
+        
+        if type(last_num) is int:
             prior += "."
         else:
             pass
-        # else:
-        #     # Split textbox by +, -, * or /
-        #     num_list = re.split('+, -, *, /', prior)
-        #     if "." not in num_list[-1]:
-        #     # Add a decimal to the end of the text
-        #         prior += "."
-        
 
-
-
-        # Output back to the textbox
         self.ids.calc_input.text = prior
-            
-
-
-
-
-        # Split our textbox by +
-        # num_list = prior.split("+")
-
-        # Poprawić błąd z dodawaniem "."
-
-
-        # if "+" or "-" or "*" or "/" in prior and "." not in num_list[-1]:
-        #     # Add a decimal to the end of the text
-        #     prior = f'{prior}.'
-        #     # Output back to the textbox
-        #     self.ids.calc_input.text = prior
-        
-        
-        # elif "." in prior:
-        #     pass
-        # else:
-        #     # Add a decimal to the end of the text
-        #     prior = f'{prior}.'
-        #     # Output back to the textbox
-        #     self.ids.calc_input.text = prior
-
-
 
     # create addition function
     def math_sign(self, sign):
