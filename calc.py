@@ -38,15 +38,19 @@ class MyLayout(Widget):
 
     # Create function to remove last character in textbox
     def remove(self):
-        prior = self.ids.calc_input.text
-        # If there is only one item in the textbox, call clear() function to display '0'
-        if len(prior) == 1:
-            self.clear()
+        # Remove sign only operation is not ended
+        if self.operation_ended == False:
+            prior = self.ids.calc_input.text
+            # If there is only one item in the textbox, call clear() function to display '0'
+            if len(prior) == 1:
+                self.clear()
+            else:
+                # Remove the last item in the textbox
+                prior = prior[:-1]
+                # Output back to the textbox
+                self.ids.calc_input.text = prior
         else:
-            # Remove the last item in the textbox
-            prior = prior[:-1]
-            # Output back to the textbox
-            self.ids.calc_input.text = prior
+            pass
 
     # Create function to make textbox positive or negative
     def pos_neg(self):
@@ -103,7 +107,7 @@ class MyLayout(Widget):
         # create a variable that contains whatever was in the textbox already
         prior = self.ids.calc_input.text
 
-        # if dot is in the end, delete it
+        # if dot is in the end, remove it
         if prior[-1] == '.':
             prior = prior[:-1]
 
