@@ -4,14 +4,14 @@
 
 <MyLayout>
     BoxLayout:
-        orientation: "vertical"
+        orientation: 'vertical'
         size: root.width, root.height
 
         TextInput:
             id: calc_input
-            text: "0"
+            text: '0'
             readonly: True
-            halign: "right"
+            halign: 'right'
             font_size: 65
             size_hint: (1, .15)
 
@@ -21,15 +21,15 @@
 
             # Row 1
             Button:
-                text: "|x|"
+                text: '|x|'
                 on_press: root.absolute()
 
             Button:
-                text: "x!"
+                text: 'x!'
                 on_press: root.factorial()
 
             Button:
-                text: "C"
+                text: 'C'
                 on_press: root.clear()
                 
             Button:
@@ -38,11 +38,11 @@
 
             # Row 2
             Button:
-                text: "1/x"
+                text: '1/x'
                 on_press: root.reciprocal()
 
             Button:
-                text: "x^2"
+                text: 'x^2'
                 on_press: root.power()
 
             Button:
@@ -50,85 +50,85 @@
                 on_press: root.square_root()
                 
             Button:
-                text: "/"
-                on_press: root.math_sign("/")
+                text: '/'
+                on_press: root.math_sign('/')
 
             # Row 3
             Button:
-                text: "7"
+                text: '7'
                 background_color: (157/255, 157/255, 157/255, 1)
                 on_press: root.button_press(7)
                 
             Button:
-                text: "8"
+                text: '8'
                 background_color: (157/255, 157/255, 157/255, 1)
                 on_press: root.button_press(8)
 
             Button:
-                text: "9"
+                text: '9'
                 background_color: (157/255, 157/255, 157/255, 1)
                 on_press: root.button_press(9)
  
             Button:
-                text: "x"
-                on_press: root.math_sign("*")
+                text: 'x'
+                on_press: root.math_sign('*')
 
             # Row 4
             Button:
-                text: "4"
+                text: '4'
                 background_color: (157/255, 157/255, 157/255, 1)
                 on_press: root.button_press(4)
  
             Button:
-                text: "5"
+                text: '5'
                 background_color: (157/255, 157/255, 157/255, 1)
                 on_press: root.button_press(5)
  
             Button:
-                text: "6"
+                text: '6'
                 background_color: (157/255, 157/255, 157/255, 1)
                 on_press: root.button_press(6)
  
             Button:
-                text: "-"
-                on_press: root.math_sign("-")
+                text: '-'
+                on_press: root.math_sign('-')
 
             # Row 5
             Button:
-                text: "1"
+                text: '1'
                 background_color: (157/255, 157/255, 157/255, 1)
                 on_press: root.button_press(1)
  
             Button:
-                text: "2"
+                text: '2'
                 background_color: (157/255, 157/255, 157/255, 1)
                 on_press: root.button_press(2)
  
             Button:
-                text: "3"
+                text: '3'
                 background_color: (157/255, 157/255, 157/255, 1)
                 on_press: root.button_press(3)
  
             Button:
-                text: "+"
-                on_press: root.math_sign("+")
+                text: '+'
+                on_press: root.math_sign('+')
 
             # Row 6
             Button:
-                text: "+/-"
+                text: '+/-'
                 background_color: (157/255, 157/255, 157/255, 1)
                 on_press: root.pos_neg()
 
             Button:
-                text: "0"
+                text: '0'
                 background_color: (157/255, 157/255, 157/255, 1)
                 on_press: root.button_press(0)
 
             Button:
-                text: "."
+                text: '.'
                 background_color: (157/255, 157/255, 157/255, 1)
                 on_press: root.dot()
 
             Button:
-                text: "="
+                text: '='
                 on_press: root.equals()
