@@ -123,9 +123,13 @@ class MyLayout(Widget):
         # If dot is in the end, remove it
         if exp[-1] == '.':
             exp = exp[:-1]
-
-        # Put a math sign to the textbox
-        self.ids.calc_input.text = f'{exp}{sign}'
+        
+        # Check if there is a math sign in the end, don't let put another
+        if exp[-1] in ['+', '-', '*', '/']:
+            pass
+        else:
+            # Put a math sign to the textbox
+            self.ids.calc_input.text = f'{exp}{sign}'
 
 
     # Create equals function
